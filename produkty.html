@@ -47,7 +47,19 @@
       cursor: pointer;
       font-weight: 500;
     }
-  </style>
+  
+    .calendar-btn {
+      background: #f0cfcf;
+      color: #333;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+</style>
 </head>
 <body>
   <header class="hero">
@@ -66,24 +78,28 @@
         <h3>🌷 Bukiet miłości</h3>
         <p>Klasyczny zestaw świeżych kwiatów – piękny gest, który mówi więcej niż słowa.</p>
         <button onclick="addToFavorites(this)">❤️ Dodaj do ulubionych</button>
+        <button onclick="saveToCalendar(this)" class="calendar-btn">📅 Zapisz w kalendarzu</button>
       </div>
       <div class="product-card">
         <img src="https://images.unsplash.com/photo-1542831371-d531d36971e6?auto=format&fit=crop&w=600&q=80" alt="Czekoladki">
         <h3>🍫 Zestaw słodyczy</h3>
         <p>Wyjątkowe praliny i czekoladki z personalizowanym bilecikiem.</p>
         <button onclick="addToFavorites(this)">❤️ Dodaj do ulubionych</button>
+        <button onclick="saveToCalendar(this)" class="calendar-btn">📅 Zapisz w kalendarzu</button>
       </div>
       <div class="product-card">
         <img src="https://images.unsplash.com/photo-1616401789284-5e9262f0a96c?auto=format&fit=crop&w=600&q=80" alt="Zestaw relaksacyjny">
         <h3>🕯️ Zestaw relaksacyjny</h3>
         <p>Świeca sojowa, herbata ziołowa i mały liścik – wieczór pełen spokoju.</p>
         <button onclick="addToFavorites(this)">❤️ Dodaj do ulubionych</button>
+        <button onclick="saveToCalendar(this)" class="calendar-btn">📅 Zapisz w kalendarzu</button>
       </div>
       <div class="product-card">
         <img src="https://images.unsplash.com/photo-1607082352092-821d241d68db?auto=format&fit=crop&w=600&q=80" alt="Kartka z życzeniami">
         <h3>💌 Kartka z życzeniami</h3>
         <p>Piękna kartka z Twoim tekstem – prosto do serca.</p>
         <button onclick="addToFavorites(this)">❤️ Dodaj do ulubionych</button>
+        <button onclick="saveToCalendar(this)" class="calendar-btn">📅 Zapisz w kalendarzu</button>
       </div>
     </div>
   </section>
@@ -104,6 +120,21 @@
     button.disabled = true;
   }
 </script>
+
+<script>
+  function saveToCalendar(button) {
+    const card = button.closest(".product-card");
+    const title = card.querySelector("h3").innerText;
+    const note = card.querySelector("p").innerText;
+    const date = prompt("Wpisz datę (RRRR-MM-DD), kiedy chcesz to zapisać:");
+    if (!date) return;
+    const events = JSON.parse(localStorage.getItem("calendarEvents")) || [];
+    events.push({ name: title, date: date, note: note });
+    localStorage.setItem("calendarEvents", JSON.stringify(events));
+    alert("Dodano do Twojego Kalendarza! 📅");
+  }
+</script>
 </body>
+
 
 </html>
