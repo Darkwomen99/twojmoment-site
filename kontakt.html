@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kontakt – TwójMoment.pl</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .kontakt-section {
+      max-width: 600px;
+      margin: auto;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    input, textarea {
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #d65f4c;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .success-message {
+      margin-top: 1rem;
+      color: #d65f4c;
+      font-weight: 500;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Skontaktuj się z nami</h1>
+      <p>Masz pytanie lub pomysł? Napisz do nas 💌</p>
+      <a href="index.html" class="cta-btn">← Wróć na stronę główną</a>
+    </div>
+  </header>
+
+  <section class="kontakt-section">
+    <form action="https://formspree.io/f/xwkgpnpg" method="POST">
+      <input type="text" name="name" placeholder="Twoje imię" required>
+      <input type="email" name="_replyto" placeholder="Twój email" required>
+      <textarea name="message" rows="5" placeholder="Twoja wiadomość" required></textarea>
+      <button type="submit">Wyślij wiadomość</button>
+      
+<p class="success-message">
+  Dziękujemy z całego serca! 💖<br/>
+  Twoja wiadomość właśnie dodała nam uśmiechu.<br/>
+  Traktujemy każdy kontakt wyjątkowo i z troską – odezwiemy się tak szybko, jak to możliwe.<br/><br/>
+  <strong>Twój Moment to również nasz moment.</strong><br/>Dziękujemy, że jesteś z nami. 🌸
+</p>
+
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TwójMoment.pl — Podaruj Ciepło</p>
+  </footer>
+
+  <script>
+    const form = document.querySelector("form");
+    const success = document.querySelector(".success-message");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          success.style.display = "block";
+          form.reset();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
