@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog prezentów – TwójMoment.pl</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .catalog-section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .catalog-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin-top: 2rem;
+    }
+    .product-card {
+      background: #fdecef;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .product-card img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .product-card h3 {
+      margin: 0.5rem 0;
+    }
+    .product-card p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .product-card button {
+      margin-top: 1rem;
+      background-color: #d65f4c;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>🎁 Katalog Prezentów</h1>
+      <p>Wybierz coś, co rozgrzeje serce</p>
+      <a href="index.html" class="cta-btn">← Wróć na stronę główną</a>
+      <a href="ulubione.html" class="cta-btn secondary">💖 Ulubione</a>
+    </div>
+  </header>
+
+  <section class="catalog-section">
+    <div class="catalog-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1600267165696-3f5c5ebd38ff?auto=format&fit=crop&w=600&q=80" alt="Bukiet kwiatów">
+        <h3>🌷 Bukiet miłości</h3>
+        <p>Klasyczny zestaw świeżych kwiatów – piękny gest, który mówi więcej niż słowa.</p>
+        <button onclick="addToFavorites(this)">❤️ Dodaj do ulubionych</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1542831371-d531d36971e6?auto=format&fit=crop&w=600&q=80" alt="Czekoladki">
+        <h3>🍫 Zestaw słodyczy</h3>
+        <p>Wyjątkowe praliny i czekoladki z personalizowanym bilecikiem.</p>
+        <button onclick="addToFavorites(this)">❤️ Dodaj do ulubionych</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1616401789284-5e9262f0a96c?auto=format&fit=crop&w=600&q=80" alt="Zestaw relaksacyjny">
+        <h3>🕯️ Zestaw relaksacyjny</h3>
+        <p>Świeca sojowa, herbata ziołowa i mały liścik – wieczór pełen spokoju.</p>
+        <button onclick="addToFavorites(this)">❤️ Dodaj do ulubionych</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1607082352092-821d241d68db?auto=format&fit=crop&w=600&q=80" alt="Kartka z życzeniami">
+        <h3>💌 Kartka z życzeniami</h3>
+        <p>Piękna kartka z Twoim tekstem – prosto do serca.</p>
+        <button onclick="addToFavorites(this)">❤️ Dodaj do ulubionych</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TwójMoment.pl — Podaruj Ciepło</p>
+  </footer>
+
+<script>
+  function addToFavorites(button) {
+    const card = button.closest(".product-card");
+    const title = card.querySelector("h3").innerText;
+    const description = card.querySelector("p").innerText;
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    favorites.push({ title, description });
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    button.innerText = "✔️ Dodano";
+    button.disabled = true;
+  }
+</script>
+</body>
+
+</html>

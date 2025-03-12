@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ulubione – TwójMoment.pl</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .ulubione-section {
+      max-width: 900px;
+      margin: auto;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .product-card {
+      background: #fdecef;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+    }
+    .product-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    .product-card p {
+      color: #444;
+    }
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #d65f4c;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>💖 Ulubione prezenty</h1>
+      <p>Twoje zapisane inspiracje – zawsze pod ręką</p>
+      <a href="produkty.html" class="cta-btn">← Wróć do katalogu</a>
+    </div>
+  </header>
+
+  <section class="ulubione-section" id="favoritesList">
+    <p>Ładuję Twoje ulubione prezenty...</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TwójMoment.pl — Podaruj Ciepło</p>
+  </footer>
+
+  <script>
+    const favoritesList = document.getElementById("favoritesList");
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    function renderFavorites() {
+      if (favorites.length === 0) {
+        favoritesList.innerHTML = "<p>Nie masz jeszcze żadnych ulubionych prezentów.</p>";
+        return;
+      }
+
+      favoritesList.innerHTML = "";
+      favorites.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <button class="remove-btn" onclick="removeFavorite(${index})">Usuń z ulubionych</button>
+        `;
+        favoritesList.appendChild(card);
+      });
+    }
+
+    function removeFavorite(index) {
+      favorites.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      renderFavorites();
+    }
+
+    renderFavorites();
+  </script>
+</body>
+</html>
