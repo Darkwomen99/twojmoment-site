@@ -13,12 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Зберігаємо в localStorage (імітація зберігання)
     let emails = JSON.parse(localStorage.getItem("emails") || "[]");
     emails.push(email);
     localStorage.setItem("emails", JSON.stringify(emails));
 
-    // Повідомлення подяки
     message.textContent = "Dziękujemy za zapis!";
     message.style.color = "#d65f4c";
     form.appendChild(message);
