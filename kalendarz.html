@@ -4,96 +4,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kalendarz – TwójMoment.pl</title>
+  <title>Twój Kalendarz Emocji</title>
   <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #fff9f9;
+      background: #fffaf9;
       margin: 0;
       padding: 0;
+      color: #444;
     }
     header {
       background-color: #d65f4c;
       color: white;
-      text-align: center;
       padding: 2rem 1rem;
+      text-align: center;
     }
     header h1 {
       margin: 0;
       font-size: 2rem;
     }
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem 1rem;
-    }
-    #calendar {
-      background: white;
-      border-radius: 12px;
+    .calendar {
+      max-width: 800px;
+      margin: 2rem auto;
       padding: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    footer {
+    .month-title {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+    }
+    .day, .day-name {
+      text-align: center;
+      padding: 0.8rem;
+      border-radius: 12px;
+    }
+    .day-name {
+      background: #fdecef;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .day {
+      background: #fff5f5;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .day:hover {
+      background: #fcd1d1;
+    }
+    .event {
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+      background: #fce4ec;
+      border-radius: 8px;
+      padding: 0.2rem 0.4rem;
+      font-weight: 500;
+    }
+    .footer {
       text-align: center;
       padding: 2rem 1rem;
-      color: #888;
+      font-size: 0.9rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>📅 Twój Kalendarz</h1>
-    <p>Zaplanuj chwile z emocją</p>
-    <a href="index.html" style="color:white; font-weight:bold;">← Wróć do strony głównej</a>
+    <h1>📅 Twój Kalendarz Emocji</h1>
+    <p>Stwórz swój wyjątkowy moment – z czułością i sercem</p>
   </header>
 
-  <div class="container">
-    <div id="calendar"></div>
+  <div class="calendar">
+    <div class="month-title" id="monthName">Marzec 2025 🌷</div>
+    <div class="grid" id="calendarGrid">
+      <!-- Grid zostanie wygenerowany przez JS -->
+    </div>
   </div>
 
-  <footer>
+  <div class="footer">
     &copy; 2025 TwójMoment.pl — Podaruj Ciepło
-  </footer>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const calendarEl = document.getElementById('calendar');
-      const storedEvents = JSON.parse(localStorage.getItem("calendarEvents")) || [];
+    const daysOfWeek = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Niedz'];
+    const grid = document.getElementById("calendarGrid");
+    const events = JSON.parse(localStorage.getItem("customEmotionalEvents")) || {};
 
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'pl',
-        selectable: true,
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,listWeek'
-        },
-        dateClick: function(info) {
-          const title = prompt("Wpisz nazwę wydarzenia:");
-          if (!title) return;
+    function generateCalendar() {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth(); // 0 = January
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const monthName = today.toLocaleDateString("pl-PL", { month: 'long', year: 'numeric' });
 
-          const emotion = prompt("Jakie emocje to wydarzenie wyraża? ❤️ 🎉 💌 🌿 😄\n(Napisz emoji lub zostaw puste)");
-          const finalTitle = emotion ? emotion + " " + title : title;
+      document.getElementById("monthName").textContent = monthName.charAt(0).toUpperCase() + monthName.slice(1) + " 🌷";
 
-          const event = { title: finalTitle, start: info.dateStr };
-          calendar.addEvent(event);
-
-          const allEvents = calendar.getEvents().map(ev => ({
-            title: ev.title,
-            start: ev.startStr
-          }));
-
-          localStorage.setItem("calendarEvents", JSON.stringify(allEvents));
-        },
-        events: storedEvents
+      // Add day names
+      daysOfWeek.forEach(d => {
+        const dn = document.createElement("div");
+        dn.className = "day-name";
+        dn.innerText = d;
+        grid.appendChild(dn);
       });
 
-      calendar.render();
-    });
+      // Fill blanks
+      for (let i = 0; i < firstDay.getDay() - 1; i++) {
+        const blank = document.createElement("div");
+        grid.appendChild(blank);
+      }
+
+      // Fill days
+      for (let d = 1; d <= lastDay.getDate(); d++) {
+        const dateStr = `${year}-${month + 1}-${d}`;
+        const dayBox = document.createElement("div");
+        dayBox.className = "day";
+        dayBox.innerHTML = d;
+
+        if (events[dateStr]) {
+          const e = document.createElement("div");
+          e.className = "event";
+          e.innerText = events[dateStr];
+          dayBox.appendChild(e);
+        }
+
+        dayBox.onclick = () => {
+          const title = prompt("Wpisz nazwę wydarzenia:");
+          if (!title) return;
+          const emoji = prompt("Dodaj emoji emocji ❤️ 🎉 💌 🌿 😄 (lub zostaw puste):");
+          const full = emoji ? `${emoji} ${title}` : title;
+          events[dateStr] = full;
+          localStorage.setItem("customEmotionalEvents", JSON.stringify(events));
+          location.reload();
+        }
+
+        grid.appendChild(dayBox);
+      }
+    }
+
+    generateCalendar();
   </script>
 </body>
 </html>
