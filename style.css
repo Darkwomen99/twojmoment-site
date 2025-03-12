@@ -1,0 +1,110 @@
+
+:root {
+  --bg: #fff6f1;
+  --primary: #f7c5b8;
+  --accent: #ffb0a0;
+  --text: #333;
+  --heading: #b95d5d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding-bottom: 50px;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+header.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(180deg, #fff0ea 0%, #ffece3 100%);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: var(--heading);
+  margin: 0.5rem 0;
+}
+
+header p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.btn-main {
+  background: var(--accent);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn-main:hover {
+  background: #ff9987;
+}
+
+section {
+  padding: 3rem 1.5rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+section h2 {
+  text-align: center;
+  color: var(--heading);
+  margin-bottom: 2rem;
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.step {
+  background: white;
+  border: 1px solid #f2d8d2;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 250px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+}
+
+.offers {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+@media(min-width: 600px) {
+  .offers {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #888;
+}
