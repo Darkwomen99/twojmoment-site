@@ -57,43 +57,8 @@
     &copy; 2025 TwójMoment.pl — Podaruj Ciepło
   </footer>
 
-  
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const calendarEl = document.getElementById('calendar');
-    const storedEvents = JSON.parse(localStorage.getItem("calendarEvents")) || [];
-
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      locale: 'pl',
-      selectable: true,
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,listWeek'
-      },
-      dateClick: function(info) {
-        const title = prompt("Wpisz nazwę wydarzenia:");
-        if (!title) return;
-
-        const emotion = prompt("Jakie emocje to wydarzenie wyraża? ❤️ 🎉 💌 🌿 😄
-(Napisz emoji lub zostaw puste)");
-        const finalTitle = emotion ? `${emotion} ${title}` : title;
-
-        const event = { title: finalTitle, start: info.dateStr };
-        calendar.addEvent(event);
-        storedEvents.push(event);
-        localStorage.setItem("calendarEvents", JSON.stringify(storedEvents));
-      },
-      events: storedEvents
-    });
-
-    calendar.render();
-  });
-</script>
-</body>
-
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
       const calendarEl = document.getElementById('calendar');
       const storedEvents = JSON.parse(localStorage.getItem("calendarEvents")) || [];
@@ -112,8 +77,14 @@
           if (title) {
             const event = { title, start: info.dateStr };
             calendar.addEvent(event);
-            storedEvents.push(event);
-            localStorage.setItem("calendarEvents", JSON.stringify(storedEvents));
+
+            // 🔁 Pobierz WSZYSTKIE wydarzenia i zapisz w localStorage
+            const allEvents = calendar.getEvents().map(ev => ({
+              title: ev.title,
+              start: ev.startStr
+            }));
+
+            localStorage.setItem("calendarEvents", JSON.stringify(allEvents));
           }
         },
         events: storedEvents
