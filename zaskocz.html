@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zaskocz mnie! – TwójMoment.pl</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .zaskocz-section {
+      max-width: 700px;
+      margin: auto;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .surprise-btn {
+      background-color: #d65f4c;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 2rem;
+    }
+    .surprise-box {
+      display: none;
+      margin-top: 2rem;
+      padding: 2rem;
+      background-color: #fdecef;
+      border-radius: 16px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      animation: fadeIn 1s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>🎲 Zaskocz mnie!</h1>
+      <p>Daj się zainspirować – wybierzemy coś pięknego dla Ciebie</p>
+      <a href="index.html" class="cta-btn">← Wróć na stronę główną</a>
+    </div>
+  </header>
+
+  <section class="zaskocz-section">
+    <p>Nie możesz się zdecydować? Kliknij przycisk poniżej, a my przygotujemy niespodziankę 💝</p>
+    <button class="surprise-btn" onclick="showSurprise()">Zaskocz mnie!</button>
+
+    <div class="surprise-box" id="surpriseBox">
+      <strong>🎁 Twój prezent to:</strong><br/>
+      🌸 <em>Zestaw relaksacyjny: świeca, herbatka i osobisty liścik</em><br/>
+      ✨ Dostarczymy go z miłością i troską – jak od Ciebie, tylko szybciej 💌
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TwójMoment.pl — Podaruj Ciepło</p>
+  </footer>
+
+  <script>
+    function showSurprise() {
+      const box = document.getElementById("surpriseBox");
+      box.style.display = "block";
+    }
+  </script>
+</body>
+</html>
