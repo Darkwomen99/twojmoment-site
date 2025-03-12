@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kalendarz – TwójMoment.pl</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #d65f4c;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+    #calendar {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📅 Twój Kalendarz</h1>
+    <p>Zaplanuj chwile, które chcesz zapamiętać</p>
+    <a href="index.html" style="color:white; font-weight:bold;">← Wróć do strony głównej</a>
+  </header>
+
+  <div class="container">
+    <div id="calendar"></div>
+  </div>
+
+  <footer>
+    &copy; 2025 TwójMoment.pl — Podaruj Ciepło
+  </footer>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+    const storedEvents = JSON.parse(localStorage.getItem("calendarEvents")) || [];
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      locale: 'pl',
+      selectable: true,
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,listWeek'
+      },
+      dateClick: function(info) {
+        const title = prompt("Wpisz nazwę wydarzenia:");
+        if (!title) return;
+
+        const emotion = prompt("Jakie emocje to wydarzenie wyraża? ❤️ 🎉 💌 🌿 😄
+(Napisz emoji lub zostaw puste)");
+        const finalTitle = emotion ? `${emotion} ${title}` : title;
+
+        const event = { title: finalTitle, start: info.dateStr };
+        calendar.addEvent(event);
+        storedEvents.push(event);
+        localStorage.setItem("calendarEvents", JSON.stringify(storedEvents));
+      },
+      events: storedEvents
+    });
+
+    calendar.render();
+  });
+</script>
+</body>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendarEl = document.getElementById('calendar');
+      const storedEvents = JSON.parse(localStorage.getItem("calendarEvents")) || [];
+
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'pl',
+        selectable: true,
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,listWeek'
+        },
+        dateClick: function(info) {
+          const title = prompt("Wpisz nazwę wydarzenia:");
+          if (title) {
+            const event = { title, start: info.dateStr };
+            calendar.addEvent(event);
+            storedEvents.push(event);
+            localStorage.setItem("calendarEvents", JSON.stringify(storedEvents));
+          }
+        },
+        events: storedEvents
+      });
+
+      calendar.render();
+    });
+  </script>
+</body>
+</html>

@@ -75,7 +75,43 @@
 
   <footer>
     <p>&copy; 2025 TwójMoment.pl — Podaruj Ciepło</p>
-  </footer>
+  
+<style>
+  .slowo-dnia {
+    background: #fff0f0;
+    border-left: 6px solid #d65f4c;
+    padding: 1rem 1.5rem;
+    margin: 2rem auto;
+    max-width: 700px;
+    border-radius: 12px;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #444;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+</style>
+<section class="slowo-dnia" id="slowoDnia">
+  Ładuję ciepłe słowo dnia...
+</section>
+<script>
+  const cytaty = [
+    "Mały gest może rozgrzać całe serce. 💛",
+    "Twój czas z bliskimi to najpiękniejszy prezent.",
+    "Nie trzeba okazji, by sprawić komuś radość. 🎁",
+    "Czasem 'Pamiętam o Tobie' znaczy więcej niż 'Kocham'.",
+    "Zatrzymaj się. Uśmiechnij się. Podaruj chwilę.",
+    "Nie szukaj idealnego momentu – stwórz go. 🌷",
+    "Ciepło, które dajesz, zawsze wraca. 🔁",
+    "Wzruszenie to najpiękniejszy dowód pamięci. 💌",
+    "Codzienność też może być świętem. 🎉"
+  ];
+
+  const dzis = new Date().getDate();
+  const slowo = cytaty[dzis % cytaty.length];
+  document.getElementById("slowoDnia").innerText = slowo;
+</script>
+
+</footer>
 
   <script src="script.js"></script>
 </body>
