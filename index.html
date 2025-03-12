@@ -4,53 +4,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TwójMoment – Podaruj ciepło</title>
+  <meta name="description" content="TwójMoment.pl – zaplanuj wyjątkowe chwile z bliskimi.">
+  <title>Twój Moment – Podaruj Ciepło</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="assets/logo.png" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <header class="hero">
-    <img src="assets/logo.png" alt="TwójMoment logo" class="logo" />
-    <h1>TwójMoment</h1>
-    <p>Platforma, która pomaga Ci pamiętać, zaskakiwać i dbać o bliskich.</p>
-    <a href="#oferta" class="btn-main">Zobacz, co oferujemy</a>
+  <header class="navbar">
+    <img src="assets/logo.png" alt="Twój Moment Logo" class="logo" />
+    <nav>
+      <ul>
+        <li><a href="#how">Jak to działa</a></li>
+        <li><a href="#offer">Oferta</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a href="#signup" class="btn-primary">Zacznij teraz</a>
   </header>
 
-  <section id="jak-to-dziala">
+  <section class="hero" data-aos="fade-up">
+    <h1>Podaruj Ciepło Bliskim</h1>
+    <p>TwójMoment.pl – zaplanuj i nie zapomnij o ważnych chwilach</p>
+    <a href="#signup" class="btn-primary">Zapisz się</a>
+  </section>
+
+  <section id="how" class="section" data-aos="fade-up">
     <h2>Jak to działa?</h2>
     <div class="steps">
-      <div class="step">
-        <h3>1. Dodaj daty</h3>
-        <p>Dodaj urodziny, rocznice i ważne chwile do swojego kalendarza.</p>
-      </div>
-      <div class="step">
-        <h3>2. Otrzymaj przypomnienia</h3>
-        <p>Inteligentny system przypomni Ci o nadchodzących wydarzeniach.</p>
-      </div>
-      <div class="step">
-        <h3>3. Zaskocz prezentem</h3>
-        <p>Zamów prezent, kwiaty lub usługę – nawet z funkcją „Zaskocz mnie!”</p>
-      </div>
+      <div class="step">📅 Dodaj ważne daty</div>
+      <div class="step">🎁 Wybierz prezent lub usługę</div>
+      <div class="step">📦 My się tym zajmiemy!</div>
     </div>
   </section>
 
-  <section id="oferta">
+  <section id="offer" class="section" data-aos="fade-up">
     <h2>Nasza oferta</h2>
-    <ul class="offers">
-      <li>🎁 Sklep z wyjątkowymi prezentami</li>
-      <li>🌷 Kwiaty i dodatki z dostawą</li>
-      <li>🤖 Asystent AI z pomysłami</li>
-      <li>🎉 Organizacja wydarzeń</li>
+    <ul>
+      <li>Prezenty, kwiaty, usługi</li>
+      <li>Asystent AI z rekomendacjami</li>
+      <li>Opcja „Zaskocz mnie!”</li>
     </ul>
   </section>
 
-  <section id="kontakt">
-    <h2>Masz pytania?</h2>
-    <p>Napisz do nas: <a href="mailto:kontakt@twojmoment.pl">kontakt@twojmoment.pl</a></p>
+  <section id="signup" class="section highlight" data-aos="fade-up">
+    <h2>Dołącz do nas</h2>
+    <p>Zapisz się, by otrzymać powiadomienie o starcie</p>
+    <form>
+      <input type="email" placeholder="Twój email" required />
+      <button type="submit">Zapisz się</button>
+    </form>
+  </section>
+
+  <section class="testimonials" data-aos="fade-up">
+    <h2>Dlaczego warto?</h2>
+    <blockquote>"Dzięki TwójMoment nie zapomniałem o rocznicy. Żona była zachwycona!" – Piotr</blockquote>
+    <blockquote>"Szybko, intuicyjnie i pięknie. Polecam każdemu!" – Marta</blockquote>
   </section>
 
   <footer>
-    <p>&copy; 2025 TwójMoment.pl — Podaruj ciepło</p>
+    <p>© 2025 TwójMoment.pl – Wszelkie prawa zastrzeżone</p>
+    <nav>
+      <a href="#">Polityka prywatności</a> |
+      <a href="#contact">Kontakt</a>
+    </nav>
   </footer>
+
+  <script>
+    AOS.init();
+  </script>
+  <script src="script.js"></script>
 </body>
 </html>
