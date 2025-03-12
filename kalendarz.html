@@ -45,7 +45,7 @@
 <body>
   <header>
     <h1>📅 Twój Kalendarz</h1>
-    <p>Zaplanuj chwile, które chcesz zapamiętać</p>
+    <p>Zaplanuj chwile z emocją</p>
     <a href="index.html" style="color:white; font-weight:bold;">← Wróć do strony głównej</a>
   </header>
 
@@ -74,18 +74,20 @@
         },
         dateClick: function(info) {
           const title = prompt("Wpisz nazwę wydarzenia:");
-          if (title) {
-            const event = { title, start: info.dateStr };
-            calendar.addEvent(event);
+          if (!title) return;
 
-            // 🔁 Pobierz WSZYSTKIE wydarzenia i zapisz w localStorage
-            const allEvents = calendar.getEvents().map(ev => ({
-              title: ev.title,
-              start: ev.startStr
-            }));
+          const emotion = prompt("Jakie emocje to wydarzenie wyraża? ❤️ 🎉 💌 🌿 😄\n(Napisz emoji lub zostaw puste)");
+          const finalTitle = emotion ? emotion + " " + title : title;
 
-            localStorage.setItem("calendarEvents", JSON.stringify(allEvents));
-          }
+          const event = { title: finalTitle, start: info.dateStr };
+          calendar.addEvent(event);
+
+          const allEvents = calendar.getEvents().map(ev => ({
+            title: ev.title,
+            start: ev.startStr
+          }));
+
+          localStorage.setItem("calendarEvents", JSON.stringify(allEvents));
         },
         events: storedEvents
       });
