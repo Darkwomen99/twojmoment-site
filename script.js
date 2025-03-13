@@ -24,3 +24,27 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const langSwitcher = document.getElementById("languageSwitcher");
+  const welcomeText = document.getElementById("welcomeText");
+  const calendarText = document.getElementById("calendarText");
+  const giftsText = document.getElementById("giftsText");
+  const contactText = document.getElementById("contactText");
+
+  function changeLanguage(lang) {
+    localStorage.setItem("selectedLang", lang); // Зберігаємо мову
+    welcomeText.textContent = translations[lang].welcome;
+    calendarText.textContent = translations[lang].calendar;
+    giftsText.textContent = translations[lang].gifts;
+    contactText.textContent = translations[lang].contact;
+  }
+
+  // Завантажуємо мову з localStorage
+  const savedLang = localStorage.getItem("selectedLang") || "en";
+  langSwitcher.value = savedLang;
+  changeLanguage(savedLang);
+
+  langSwitcher.addEventListener("change", function () {
+    changeLanguage(this.value);
+  });
+});
