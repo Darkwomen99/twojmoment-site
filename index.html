@@ -1,148 +1,50 @@
-
 <!DOCTYPE html>
-<html lang="pl">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/21.6.3/i18next.min.js"></script>
-  <script src="locales.js"></script>
-<script src="script.js"></script>
-
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TwójMoment.pl – Podaruj Ciepło</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <meta name="description" content="TwójMoment.pl – Zatrzymaj się. Pamiętaj. Podaruj emocje. Platforma, która pomaga Ci z dbałością celebrować ważne chwile z bliskimi – przez inteligentne przypomnienia, wyjątkowe prezenty i piękne gesty.">
-  <meta name="keywords" content="gift reminder, surprise delivery, calendar assistant, emotional gifts, special moments, birthday organizer, anniversary helper, personal AI assistant, prezent online, planowanie wydarzeń, zaskocz mnie">
-  <meta name="author" content="TwójMoment Team">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://twojmoment-site.vercel.app/">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="TwójMoment.pl – Podaruj emocje">
-  <meta property="og:description" content="Zadbaj o relacje i wyjątkowe chwile – przypomnienia, prezenty, emocje.">
-  <meta property="og:image" content="A_soft_and_emotional_website_preview_image_for_a_P.png">
-  <meta property="og:url" content="https://twojmoment-site.vercel.app/">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="TwójMoment.pl – Podaruj emocje">
-  <meta name="twitter:description" content="Zadbaj o relacje i wyjątkowe chwile – przypomnienia, prezenty, emocje.">
-  <meta name="twitter:image" content="A_soft_and_emotional_website_preview_image_for_a_P.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="title">Gift Reminder</title>
+    
+    <!-- Стилі -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Підключаємо i18next -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/21.6.3/i18next.min.js"></script>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-content">
-      <h1>TwójMoment.pl</h1>
-      <p>Spraw, by Twoi bliscy poczuli się naprawdę wyjątkowo</p>
-      <a href="#how" class="cta-btn">Jak to działa?</a>
-      <a href="about.html" class="cta-btn secondary">O nas</a>
-      <a href="sklep.html" class="cta-btn secondary">🛍 Sklep</a>
-      <a href="produkty.html" class="cta-btn secondary">🎁 Produkty</a>
-      <a href="kontakt.html" class="cta-btn secondary">📩 Kontakt</a>
-      <a href="zaskocz.html" class="cta-btn secondary">🎲 Zaskocz mnie!</a>
-      <a href="kalendarz.html" class="cta-btn secondary">📅 Kalendarz</a>
-      <a href="kalendarz_emocjonalny.html" class="cta-btn secondary">🌸 Kalendarz Emocji</a>
-    </div>
+
+    <!-- Вибір мови -->
     <select id="languageSwitcher">
-  <option value="en">English</option>
-  <option value="pl">Polski</option>
-  <option value="ua">Українська</option>
-  <option value="ru">Русский</option>
-</select>
+        <option value="en">English</option>
+        <option value="pl">Polski</option>
+        <option value="ua">Українська</option>
+        <option value="ru">Русский</option>
+    </select>
 
-<h1 id="welcomeText">Welcome to our site!</h1>
-<p id="calendarText">Personal Calendar</p>
-<p id="giftsText">Gift Recommendations</p>
-<p id="contactText">Contact Us</p>
+    <!-- Контент сайту -->
+    <header>
+        <h1 data-translate="welcome">Welcome to our site!</h1>
+    </header>
 
-  </header>
+    <main>
+        <section>
+            <h2 data-translate="calendar">Personal Calendar</h2>
+            <p data-translate="calendar_desc">Save important dates and never forget to surprise your loved ones!</p>
+        </section>
 
-  <section id="how" class="section">
-    <h2>Jak to działa?</h2>
-    <ol>
-      <li>Dodaj ważne daty do kalendarza</li>
-      <li>Wybierz prezent lub usługę</li>
-      <li>Zaskocz bliskich — bez stresu i na czas!</li>
-    </ol>
-  </section>
+        <section>
+            <h2 data-translate="gifts">Gift Recommendations</h2>
+            <p data-translate="gifts_desc">Let us suggest the best gifts based on preferences.</p>
+        </section>
 
-  <section class="section gifts">
-    <h2>Pomysły na prezenty</h2>
-    <div class="gift-grid">
-      <div class="gift-item">🌹 Kwiaty z dostawą</div>
-      <div class="gift-item">🎁 Zestawy prezentowe</div>
-      <div class="gift-item">🍰 Słodkie niespodzianki</div>
-      <div class="gift-item">💌 Personalizowane kartki</div>
-    </div>
-  </section>
+        <section>
+            <h2 data-translate="contact">Contact Us</h2>
+            <p data-translate="contact_desc">Have questions? Get in touch!</p>
+        </section>
+    </main>
 
-  <section class="section calendar">
-    <h2>Twój Kalendarz</h2>
-    <p>Dodaj daty urodzin, rocznic i innych ważnych wydarzeń. Już nigdy nie zapomnisz!</p>
-    <form>
-      <input type="email" placeholder="Twój email" required />
-      <button type="submit">Zapisz się</button>
-    </form>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 TwójMoment.pl — Podaruj Ciepło</p>
-  
-<style>
-  .slowo-dnia {
-    background: #fff0f0;
-    border-left: 6px solid #d65f4c;
-    padding: 1rem 1.5rem;
-    margin: 2rem auto;
-    max-width: 700px;
-    border-radius: 12px;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: #444;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-  }
-</style>
-<section class="slowo-dnia" id="slowoDnia">
-  Ładuję ciepłe słowo dnia...
-</section>
-<script>
-  const cytaty = [
-    "Mały gest może rozgrzać całe serce. 💛",
-    "Twój czas z bliskimi to najpiękniejszy prezent.",
-    "Nie trzeba okazji, by sprawić komuś radość. 🎁",
-    "Czasem 'Pamiętam o Tobie' znaczy więcej niż 'Kocham'.",
-    "Zatrzymaj się. Uśmiechnij się. Podaruj chwilę.",
-    "Nie szukaj idealnego momentu – stwórz go. 🌷",
-    "Ciepło, które dajesz, zawsze wraca. 🔁",
-    "Wzruszenie to najpiękniejszy dowód pamięci. 💌",
-    "Codzienność też może być świętem. 🎉"
-  ];
-
-  const dzis = new Date().getDate();
-  const slowo = cytaty[dzis % cytaty.length];
-  document.getElementById("slowoDnia").innerText = slowo;
-</script>
-
-
-<section style="background: #fff0f5; padding: 3rem 1rem; text-align: center; border-top: 1px solid #f8d2d2;">
-  <h2 style="font-size: 1.8rem; color: #d65f4c;">🌸 Twój Kalendarz Emocji</h2>
-  <p style="max-width: 600px; margin: auto; font-size: 1.1rem; margin-top: 1rem;">
-    Zapisz wzruszające momenty, małe gesty i daty, które mają dla Ciebie znaczenie.  
-    Niech każdy dzień ma swoje serce. 💌
-  </p>
-  <a href="kalendarz_emocjonalny.html" class="cta-btn" style="margin-top: 2rem; display: inline-block; background-color: #d65f4c; color: white; padding: 0.8rem 1.5rem; border-radius: 12px; font-size: 1rem;">
-    🌸 Otwórz Kalendarz
-  </a>
-</section>
-
-</footer>
-
-  <script src="script.js"></script>
+    <!-- Підключення скриптів -->
+    <script src="locales.js"></script>  <!-- Файл з перекладами -->
+    <script src="script.js"></script>   <!-- Основний скрипт -->
 </body>
 </html>
