@@ -40,3 +40,4 @@ const translations = {
     contact_desc: "Есть вопросы? Свяжитесь с нами!"
   }
 };
+
